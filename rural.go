@@ -1,7 +1,7 @@
 package main
 
 import (
-	"rural/server"
+	"github.com/saggymac/rural/server"
 	)
 
 func main() {
