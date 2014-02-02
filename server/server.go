@@ -13,7 +13,7 @@ var (
 )
 
 
-func Setup() {
+func Start() {
 	serverInstance := &http.Server{
 		Addr: ":8080",
 		ReadTimeout: 10 * time.Second,

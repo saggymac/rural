@@ -1,8 +1,8 @@
 package apns
 
-import {
-	"net/http"
-}
+import (
+	"fmt"
+)
 
 const (
 	DELIVERY_IMMEDIATE = iota
@@ -10,6 +10,13 @@ const (
 )
 
 
+type Config struct {
+	prodServer string
+	sandboxServer string
+	feedbackServer string
+}
+
+var config = Config{}
 
 type PushItem struct {
 
@@ -17,16 +24,24 @@ type PushItem struct {
 
 type PushMessage struct {
 	// 32 bytes
-	string DeviceToken
+	DeviceToken string
 
 	// up to 256 bytes of json
-	string Payload
+	Payload string
 
 	// Ignoring expiration, 4 bytes
 
 	// Use the DELIVERY_* package constants, 1 byte
-	int DeliveryMethod
+	DeliveryMethod int
 } 
+
+
+
+func Initialize( cnf Config ) {
+	fmt.Println( "hello")
+	config = cnf
+	fmt.Println( config)
+}
 
 
 func RegisterDevice (  ) {
