@@ -1,8 +1,5 @@
 package apns
 
-import (
-	"fmt"
-)
 
 const (
 	DELIVERY_IMMEDIATE = iota
@@ -11,9 +8,9 @@ const (
 
 
 type Config struct {
-	prodServer string
-	sandboxServer string
-	feedbackServer string
+	ProdServer string "prodServer"
+	SandboxServer string "sandboxServer"
+	FeedbackServer string "feedbackServer"
 }
 
 var config = Config{}
@@ -38,9 +35,7 @@ type PushMessage struct {
 
 
 func Initialize( cnf Config ) {
-	fmt.Println( "hello")
 	config = cnf
-	fmt.Println( config)
 }
 
 

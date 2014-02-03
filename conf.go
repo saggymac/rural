@@ -9,10 +9,10 @@ import (
 
 
 type Config struct {
-	apns apns.Config
+	Apns apns.Config "apns"
 }
 
-var AppConfig = Config{}
+var AppConfig = &Config{}
 
 var parsedConfig map[string]interface{}
 
@@ -30,7 +30,6 @@ func init() {
 		return
 	}
 
-	fmt.Println( "config loaded; hello?")
-	fmt.Printf( "%+v\n", AppConfig.apns)
+	fmt.Println( "config loaded")
 	return
 }

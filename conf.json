@@ -1,7 +1,7 @@
 {
 	"apns" : {
-		"prodServer" : "prod",
-		"sandboxServer" : "sandbox",
-		"feedbackServer" : "feedback"
+		"prodServer": "prod",
+		"sandboxServer": "sandbox",
+		"feedbackServer": "feedback"
 	}
 }

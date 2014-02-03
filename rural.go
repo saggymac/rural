@@ -6,7 +6,7 @@ import (
 	)
 
 func main() {
-	apns.Initialize( AppConfig.apns)
+	apns.Initialize( AppConfig.Apns)
 
 	server.Start()
 }
