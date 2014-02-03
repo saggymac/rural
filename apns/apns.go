@@ -10,7 +10,8 @@ const (
 type Config struct {
 	ProdServer string "prodServer"
 	SandboxServer string "sandboxServer"
-	FeedbackServer string "feedbackServer"
+	ProdFeedbackServer string "prodFeedbackServer"
+	SandboxFeedbackServer string "sandboxFeedbackServer" 	
 }
 
 var config = Config{}

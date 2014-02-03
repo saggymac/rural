@@ -1,7 +1,11 @@
 {
 	"apns" : {
-		"prodServer": "prod",
-		"sandboxServer": "sandbox",
-		"feedbackServer": "feedback"
+		"prodServer": "gateway.push.apple.com:2195",
+		"sandboxServer": "gateway.sandbox.push.apple.com:2195",
+		"prodFeedbackServer": "feedback.push.apple.com:2196",
+		"sandboxFeedbackServer": "feedback.sandbox.push.apple.com:2196"
+	},
+	"storage" : {
+		"datasource" : "./rural.db"
 	}
 }

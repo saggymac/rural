@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"github.com/saggymac/rural/apns"
+	"github.com/saggymac/rural/storage"	
 	)
 
 
 type Config struct {
 	Apns apns.Config "apns"
+	Storage storage.Config "storage"
 }
 
 var AppConfig = &Config{}
