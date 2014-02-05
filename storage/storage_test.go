@@ -18,7 +18,7 @@ func Test(t *testing.T) { TestingT(t) }
 
 func (s *StorageSuite) SetUpSuite(c *C) {
 	s.deviceId = "testDeviceId"
-	// TODO: setup the database
+
 	dbPath := c.MkDir() + "/test.db"
 
 	Initialize( Config{ dbPath})

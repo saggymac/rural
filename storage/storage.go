@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 	"errors"
+	"io/ioutil"
 	)
 
 type Config struct {
@@ -12,6 +13,37 @@ type Config struct {
 
 var config = Config{}
 var db *sql.DB = nil
+
+func readAndExecSqlFromFile( sqlFilePath string ) error {
+	dat, err := ioutil.ReadFile( sqlFilePath)
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Exec( string( dat))
+	if err != nil {
+		return err
+	}
+
+	return nil	
+}
+
+func setupTablesIfNecessary() error {
+
+	err := readAndExecSqlFromFile( "devices.sql")
+	if err != nil {
+		return err
+	}
+
+	err = readAndExecSqlFromFile( "messages.sql")
+	if err != nil {
+		return err
+	}
+
+
+	return nil
+}
+
 
 func Initialize( cnf Config ) {
 	config = cnf
@@ -22,7 +54,10 @@ func Initialize( cnf Config ) {
 		panic( err)
 	}
 
-	// TODO: create schema if necessary
+	err = setupTablesIfNecessary()
+	if err != nil {
+		panic( err)
+	}
 
 	defer db.Close()
 }
