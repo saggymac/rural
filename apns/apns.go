@@ -34,6 +34,9 @@ type PushMessage struct {
 } 
 
 
+func Shutdown() {
+
+}
 
 func Initialize( cnf Config ) {
 	config = cnf

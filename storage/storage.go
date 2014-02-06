@@ -44,6 +44,11 @@ func setupTablesIfNecessary() error {
 	return nil
 }
 
+func Shutdown() {
+	if db != nil {
+		db.Close()
+	}
+}
 
 func Initialize( cnf Config ) {
 	config = cnf
@@ -59,7 +64,6 @@ func Initialize( cnf Config ) {
 		panic( err)
 	}
 
-	defer db.Close()
 }
 
 
@@ -73,9 +77,9 @@ func UpdateDevice( deviceId string ) error {
 		return errors.New( "invalid deviceId")
 	}
 
-	_, err := db.Exec( "INSERT OR REPLACE INTO devices (deviceId) VALUES (?)", deviceId)
+	_, err := db.Exec( "INSERT OR REPLACE INTO deivces (deviceId) VALUES (?)", deviceId)
 	if err != nil {
-		return errors.New( "unable to insert device into db")
+		return err
 	}
 
 	return nil
