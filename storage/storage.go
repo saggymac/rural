@@ -28,6 +28,7 @@ func readAndExecSqlFromFile( sqlFilePath string ) error {
 	return nil	
 }
 
+
 func setupTablesIfNecessary() error {
 
 	err := readAndExecSqlFromFile( "devices.sql")
@@ -40,15 +41,16 @@ func setupTablesIfNecessary() error {
 		return err
 	}
 
-
 	return nil
 }
+
 
 func Shutdown() {
 	if db != nil {
 		db.Close()
 	}
 }
+
 
 func Initialize( cnf Config ) {
 	config = cnf

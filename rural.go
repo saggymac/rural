@@ -22,7 +22,7 @@ func main() {
 }
 
 func Shutdown() {
-	fmt.Println( "Shutting down")
+	fmt.Println( "shutting down")
 	apns.Shutdown()
 	storage.Shutdown()
 }
