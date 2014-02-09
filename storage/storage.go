@@ -5,6 +5,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"errors"
 	"io/ioutil"
+	"os"
 	)
 
 type Config struct {
@@ -15,7 +16,18 @@ var config = Config{}
 var db *sql.DB = nil
 
 func readAndExecSqlFromFile( sqlFilePath string ) error {
-	dat, err := ioutil.ReadFile( sqlFilePath)
+
+	var fullPath = ""
+
+	envHome := os.Getenv( "RURAL_HOME")
+	if len( envHome) <= 0 {
+		fullPath = sqlFilePath		
+	} else {
+		fullPath = envHome + "/conf/" + sqlFilePath
+	}
+		
+
+	dat, err := ioutil.ReadFile( fullPath)
 	if err != nil {
 		return err
 	}

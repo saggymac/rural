@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"github.com/saggymac/rural/apns"
 	"github.com/saggymac/rural/storage"	
+	"os"
 	)
 
 
@@ -20,7 +21,17 @@ var parsedConfig map[string]interface{}
 
 func init() {
 
-	dat, err := ioutil.ReadFile( "conf.json")
+	confPath := "conf.json"
+
+	var fullPath = ""
+	envHome := os.Getenv( "RURAL_HOME")
+	if len( envHome) <= 0 {
+		fullPath = confPath
+	} else {
+		fullPath = envHome + "/conf/" + confPath
+	}
+
+	dat, err := ioutil.ReadFile( fullPath)
 	if err != nil {
 		fmt.Printf( "unable to read conf.json; %v\n", err)
 		return

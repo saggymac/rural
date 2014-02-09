@@ -20,7 +20,7 @@ func Start() {
 		WriteTimeout: 10 * time.Second,
 	}
 
-	http.HandleFunc( "/device", deviceHandler)
+	http.HandleFunc( "/register", deviceHandler)
 	http.HandleFunc( "/push", pushHandler)
 	http.HandleFunc( "/pushraw", pushRawHandler)	
 
@@ -50,7 +50,7 @@ func deviceHandler ( writer http.ResponseWriter, request *http.Request ) {
 	badRequest = badRequest || (len( appVersion) <= 0)
 
 	if badRequest {
-		// todo: send an error response
+		http.Error( writer, "invalid or missing parameters", http.StatusBadRequest)
 	}
 
 	storage.UpdateDevice( appId, deviceId, appVersion)
