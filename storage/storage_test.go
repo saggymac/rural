@@ -8,6 +8,8 @@ import (
 
 type StorageSuite struct { 
 	deviceId string
+	appId string
+	appVersion string
 }
 var _ = Suite( &StorageSuite{})
 
@@ -18,6 +20,8 @@ func Test(t *testing.T) { TestingT(t) }
 
 func (s *StorageSuite) SetUpSuite(c *C) {
 	s.deviceId = "testDeviceId"
+	s.appId = "testApp"
+	s.appVersion = "0.9"
 
 	dbPath := c.MkDir() + "/test.db"
 
@@ -27,11 +31,11 @@ func (s *StorageSuite) SetUpSuite(c *C) {
 
 
 func (s *StorageSuite) TestDeviceInsert( c *C ) {
-	err := UpdateDevice( s.deviceId)
+	err := UpdateDevice( s.appId, s.deviceId, s.appVersion)
 	c.Check( err, IsNil)
 }
 
 func (s *StorageSuite) TestDeviceUpdate( c *C ) {
-	err := UpdateDevice( s.deviceId) 
+	err := UpdateDevice( s.appId, s.deviceId, s.appVersion)
 	c.Check( err, IsNil)
 }

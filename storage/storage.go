@@ -69,17 +69,20 @@ func Initialize( cnf Config ) {
 }
 
 
-// Create a new device record, or update its timestamp
-func UpdateDevice( deviceId string ) error {
+// We either create a new record with these values, or we
+// update an existing one.
+// 
+func UpdateDevice( appId string, deviceId string, appVersion string ) error {
 	if db == nil {
 		return errors.New( "no database")
 	}
 
+	// todo: more validation
 	if len( deviceId) <= 0 {
 		return errors.New( "invalid deviceId")
 	}
 
-	_, err := db.Exec( "INSERT OR REPLACE INTO deivces (deviceId) VALUES (?)", deviceId)
+	_, err := db.Exec( "INSERT OR REPLACE INTO devices (appId,deviceId,appVersion) VALUES (?,?,?)", appId, deviceId, appVersion)
 	if err != nil {
 		return err
 	}
