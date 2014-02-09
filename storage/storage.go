@@ -77,15 +77,26 @@ func UpdateDevice( appId string, deviceId string, appVersion string ) error {
 		return errors.New( "no database")
 	}
 
-	// todo: more validation
+	// Validate 
 	if len( deviceId) <= 0 {
 		return errors.New( "invalid deviceId")
 	}
 
+	if len( appId) <= 0 {
+		return errors.New( "invalid appId")
+	}
+
+	if len( appVersion) <= 0 {
+		return errors.New( "invalid appVersion")
+	}
+
+
+	// Update the DB
 	_, err := db.Exec( "INSERT OR REPLACE INTO devices (appId,deviceId,appVersion) VALUES (?,?,?)", appId, deviceId, appVersion)
 	if err != nil {
 		return err
 	}
+
 
 	return nil
 }

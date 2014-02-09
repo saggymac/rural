@@ -39,3 +39,19 @@ func (s *StorageSuite) TestDeviceUpdate( c *C ) {
 	err := UpdateDevice( s.appId, s.deviceId, s.appVersion)
 	c.Check( err, IsNil)
 }
+
+
+func (s *StorageSuite) TestMissingDevice( c *C ) {
+	err := UpdateDevice( s.appId, "", s.appVersion)
+	c.Check( err, NotNil)
+}
+
+func (s *StorageSuite) TestMissingAppId( c *C ) {
+	err := UpdateDevice( "", s.deviceId, s.appVersion)
+	c.Check( err, NotNil)
+}
+
+func (s *StorageSuite) TestMissingAppVersion( c *C ) {
+	err := UpdateDevice( s.appId, s.deviceId, "")
+	c.Check( err, NotNil)
+}

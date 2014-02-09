@@ -45,9 +45,9 @@ func deviceHandler ( writer http.ResponseWriter, request *http.Request ) {
 	deviceId := request.FormValue( "deviceId")
 	appVersion := request.FormValue( "appVersion")
 
-	badRequest := (appId == "")
-	badRequest = badRequest || (deviceId == "")
-	badRequest = badRequest || (appVersion == "")
+	badRequest :=  len( appId) <= 0
+	badRequest = badRequest || (len( deviceId) <= 0)
+	badRequest = badRequest || (len( appVersion) <= 0)
 
 	if badRequest {
 		// todo: send an error response
