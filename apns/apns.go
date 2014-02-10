@@ -1,6 +1,14 @@
 package apns
 
 
+//
+// what I want to achieve here is a dynamic connection pool.
+// Meaning, we would maintain up to a max number of connections
+// to APNS (defined by config) that will decay with reduced load; 
+// grow up to the max as load demands.
+//
+
+
 const (
 	DELIVERY_IMMEDIATE = iota
 	DELIVERY_DEFERRED
